@@ -1,3 +1,26 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+import random
+import time
+
+def print_one_letter_at_a_time(text):
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.02)
+
+ascii_art = """
+████████▄   ███    █▄   ▄█   ▄████████    ▄█   ▄█▄
+███    ███  ███    ███ ███  ███    ███   ███ ▄███▀
+███    ███  ███    ███ ███▌ ███    █▀    ███▐██▀
+███    ███  ███    ███ ███▌ ███         ▄█████▀
+███    ███  ███    ███ ███▌ ███        ▀▀█████▄
+███    ███  ███    ███ ███  ███    █▄    ███▐██▄
+███  ▀ ███  ███    ███ ███  ███    ███   ███ ▀███▄
+ ▀██████▀▄█ ████████▀  █▀   ████████▀    ███   ▀█▀
+   ▄███████▄    ▄████████ ███▄▄▄▄      ▄████████
+  ███    ███   ███    ███ ███▀▀▀██▄   ███    ███
+  ███    ███   ███    █▀  ███   ███   ███    █▀
+  ███    ███  ▄███▄▄▄     ███   ███   ███
+▀█████████▀  ▀▀███▀▀▀     ███   ███ ▀███████████
+  ███          ███    █▄  ███   ███          ███
+  ███          ███    ███ ███   ███    ▄█    ███
+ ▄████▀        ██████████  ▀█   █▀   ▄████████▀
+"""
