@@ -50,3 +50,26 @@ def main():
             Please don't let your country down. Don't be a Harry Kane!
             Let's start with {nationality} vs Germany in a penalty shootout!!!
             """)
+
+            while True:
+                player_goals, computer_saves = game(name)
+                print("That's all they needed! \n")
+                
+                if player_goals >= 3:
+                    print(f"{name} has won it for {nationality} what a legend")
+                else:
+                    print(f"Computer breaks the hearts of {nationality}")
+
+                play_again = get_yes_no_input("Fancy another go? (yes/no): \n")
+                if play_again != 'yes':
+                    break
+            
+            print("All the best buddy!")
+
+        except KeyboardInterrupt:
+            print("\nGame interrupted. Exiting.")
+    else:
+        print("Okay then, enjoy your day.")
+
+if __name__ == "__main__":
+    main()
