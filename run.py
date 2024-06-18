@@ -89,10 +89,10 @@ def player_saves(name):
 
     if player_choice == computer_choice:
         print(f"{name} with the SAVVVVEEEE!!!!!!!! \n")
-        return True  # Save
+        return True
     else:
         print("Computer with the GGGOOOOOAALLLLL \n")
-        return False  # Goal
+        return False
 
 def game(name, first_shooter):
     player_goals = 0
@@ -104,34 +104,37 @@ def game(name, first_shooter):
             print(f"{name} takes the shot!")
             if player_shoots(name):
                 player_goals += 1
+            print(f"Score update: {name} {player_goals} - Computer {computer_goals}")
             print(f"{name} tries to save!")
             if not player_saves(name):
                 computer_goals += 1
+            print(f"Score update: {name} {player_goals} - Computer {computer_goals}")
         else:
             print(f"{name} tries to save!")
             if not player_saves(name):
                 computer_goals += 1
+            print(f"Score update: {name} {player_goals} - Computer {computer_goals}")
             print(f"{name} takes the shot!")
             if player_shoots(name):
                 player_goals += 1
+            print(f"Score update: {name} {player_goals} - Computer {computer_goals}")
 
     return player_goals, computer_goals
 
 def main():
     print_one_letter_at_a_time(ascii_art)
     if get_yes_no_input("Can you step up? (yes/no): \n") == 'yes':
-        try:
+        name = input("Please enter your name: \n").strip()
+        while not name:
+            print("Name cannot be empty. Please enter a valid name.")
             name = input("Please enter your name: \n").strip()
-            while not name:
-                print("Name cannot be empty. Please enter a valid name.")
-                name = input("Please enter your name: \n").strip()
 
+        nationality = input(f"Please can {name} enter the country they represent: \n").strip()
+        while not nationality:
+            print("Country cannot be empty. Please enter a valid country.")
             nationality = input(f"Please can {name} enter the country they represent: \n").strip()
-            while not nationality:
-                print("Country cannot be empty. Please enter a valid country.")
-                nationality = input(f"Please can {name} enter the country they represent: \n").strip()
 
-            intro_text = f"""
+        intro_text = f"""
 We have {name} from {nationality}
             
 It's 0-0 after a dull 120 minutes of Football, your country is
@@ -146,39 +149,37 @@ You can go 1 = top left, 2 = bottom left, 3 = middle, 4 = top right, and 5 = bot
 Please don't let your country down. Don't be a Harry Kane!
 Let's start with {nationality} vs Germany in a penalty shootout!!!
 """
-            print_one_letter_at_a_time(intro_text)
+        print_one_letter_at_a_time(intro_text)
 
-            player_choice = get_heads_or_tails_input("Heads or Tails? \n")
-            toss_result = coin_toss()
-            print(f"The coin toss result is {toss_result}.\n")
+        player_choice = get_heads_or_tails_input("Heads or Tails? \n")
+        toss_result = coin_toss()
+        print(f"The coin toss result is {toss_result}.\n")
 
-            if player_choice == toss_result:
-                print("You won the coin toss! Do you want to take the first penalty? (yes/no): \n")
-                if get_yes_no_input("") == "yes":
-                    first_shooter = "player"
-                else:
-                    first_shooter = "computer"
+        if player_choice == toss_result:
+            print("You won the coin toss! Do you want to take the first penalty? (yes/no): \n")
+            if get_yes_no_input("") == "yes":
+                first_shooter = "player"
             else:
                 first_shooter = "computer"
-                print("Computer won the coin toss and will take the first penalty.\n")
+        else:
+            first_shooter = "computer"
+            print("Computer won the coin toss and will take the first penalty.\n")
 
-            while True:
-                player_goals, computer_goals = game(name, first_shooter)
-                print("That's all they needed! \n")
-                
-                if player_goals > computer_goals:
-                    print(f"{name} has won it for {nationality}! What a legend!")
-                else:
-                    print(f"Computer breaks the hearts of {nationality}")
-
-                play_again = get_yes_no_input("Fancy another go? (yes/no): \n")
-                if play_again != 'yes':
-                    break
+        while True:
+            player_goals, computer_goals = game(name, first_shooter)
+            print("That's all they needed! \n")
             
-            print("All the best buddy!")
+            if player_goals > computer_goals:
+                print(f"{name} has won it for {nationality}! What a legend!")
+            else:
+                print(f"Computer breaks the hearts of {nationality}")
 
-        except KeyboardInterrupt:
-            print("\nGame interrupted. Exiting.")
+            play_again = get_yes_no_input("Fancy another go? (yes/no): \n")
+            if play_again != 'yes':
+                break
+        
+        print("All the best buddy!")
+
     else:
         print("Okay then, enjoy your day.")
 
