@@ -25,27 +25,71 @@ ascii_art = """
  ▄████▀        ██████████  ▀█   █▀   ▄████████▀
 """
 
+def get_input(prompt, valid_choices):
+    while True:
+        try:
+            choice = int(input(prompt))
+            if choice in valid_choices:
+                return choice
+            else:
+                print(f"Invalid choice. Please choose a number from {valid_choices}.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+def get_yes_no_input(prompt):
+    while True:
+        choice = input(prompt).strip().lower()
+        if choice in ['yes', 'no']:
+            return choice
+        else:
+            print("Invalid choice. Please enter 'yes' or 'no'.")
+
+def player_shoots(name):
+    """Simulate the player taking a penalty shot."""
+    player_choice = get_input("Choose either '1', '2', '3', '4', '5': \n", [1, 2, 3, 4, 5])
+    computer_choice = random.choice([1, 2, 3, 4, 5])
+
+    print(f"{name} has gone for {player_choice} \n")
+    time.sleep(0.5)
+    print(f"German keeper dives to {computer_choice} \n")
+    time.sleep(0.5)
+
+    if player_choice == computer_choice:
+        print(" The German keeper with the SAVVVVEEEE!!!!!!!! \n")
+        return False
+    else:
+        print(f"{name} with the GGGOOOOOAALLLLL \n")
+        return True
+
+def player_saves(name):
+    player_choice = get_input("Dive to either '1', '2', '3', '4', '5': \n", [1, 2, 3, 4, 5])
+    computer_choice = random.choice([1, 2, 3, 4, 5])
+
+    print(f"Germany goes for {computer_choice} \n")
+    time.sleep(0.5)
+    print(f"{name} dives to {player_choice} \n")
+    time.sleep(0.5)
+
+    if player_choice == computer_choice:
+        print(f"{name} with the SAVVVVEEEE!!!!!!!! \n")
+        return True
+    else:
+        print("Computer with the GGGOOOOOAALLLLL \n")
+        return False
+
 def game(name):
     player_goals = 0
-    computer_saves = 0
+    computer_goals = 0
 
-    for _ in range(5):
-        player_choice = get_input("Choose either '1', '2', '3', '4', '5': \n", [1, 2, 3, 4, 5])
-        computer_choice = random.choice([1, 2, 3, 4, 5])
-
-        print(f"{name} has gone for {player_choice} \n")
-        time.sleep(0.5)
-        print(f"Computer dives to {computer_choice} \n")
-        time.sleep(0.5)
-
-        if player_choice == computer_choice:
-            computer_saves += 1
-            print("Keeper with the SAVVVVEEEE!!!!!!!! \n")
-        else:
+    for i in range(5):
+        print(f"Round {i+1}: {name} takes the shot!")
+        if player_shoots(name):
             player_goals += 1
-            print(f"{name} with the GGGOOOOOAALLLLL \n")
+        print(f"Round {i+1}: {name} tries to save!")
+        if not player_saves(name):
+            computer_goals += 1
 
-    return player_goals, computer_saves
+    return player_goals, computer_goals
 
 def main():
     print_one_letter_at_a_time(ascii_art)
@@ -74,11 +118,11 @@ def main():
             """)
 
             while True:
-                player_goals, computer_saves = game(name)
+                player_goals, computer_goals = game(name)
                 print("That's all they needed! \n")
                 
-                if player_goals >= 3:
-                    print(f"{name} has won it for {nationality} what a legend")
+                if player_goals > computer_goals:
+                    print(f"{name} has won it for {nationality}! What a legend!")
                 else:
                     print(f"Computer breaks the hearts of {nationality}")
 
