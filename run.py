@@ -25,6 +25,28 @@ ascii_art = """
  ▄████▀        ██████████  ▀█   █▀   ▄████████▀
 """
 
+def game(name):
+    player_goals = 0
+    computer_saves = 0
+
+    for _ in range(5):
+        player_choice = get_input("Choose either '1', '2', '3', '4', '5': \n", [1, 2, 3, 4, 5])
+        computer_choice = random.choice([1, 2, 3, 4, 5])
+
+        print(f"{name} has gone for {player_choice} \n")
+        time.sleep(0.5)
+        print(f"Computer dives to {computer_choice} \n")
+        time.sleep(0.5)
+
+        if player_choice == computer_choice:
+            computer_saves += 1
+            print("Keeper with the SAVVVVEEEE!!!!!!!! \n")
+        else:
+            player_goals += 1
+            print(f"{name} with the GGGOOOOOAALLLLL \n")
+
+    return player_goals, computer_saves
+
 def main():
     print_one_letter_at_a_time(ascii_art)
     if get_yes_no_input("Can you step up? (yes/no): \n") == 'yes':
