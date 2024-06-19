@@ -83,7 +83,7 @@ def player_shoots(name):
     time.sleep(0.5)
 
     if player_choice == computer_choice:
-        print("Keeper with the SAVVVVEEEE!!!!!!!! \n")
+        print("Neuer with the SAVVVVEEEE!!!!!!!! \n")
         return False
     else:
         print(f"{name} with the GGGOOOOOAALLLLL \n")
@@ -105,7 +105,7 @@ def player_saves(name):
         print(f"{name} with the SAVVVVEEEE!!!!!!!! \n")
         return True
     else:
-        print("Computer with the GGGOOOOOAALLLLL \n")
+        print("Muller with the GGGOOOOOAALLLLL \n")
         return False
 
 
@@ -225,7 +225,7 @@ Let's start with {nation} vs Germany in a penalty shootout!!!
                 first_shooter = "computer"
         else:
             first_shooter = "computer"
-            print("Computer won the coin toss "
+            print("Philipp Lahm won the coin toss "
                   f"and will take the first penalty.\n")
 
         while True:
@@ -235,7 +235,7 @@ Let's start with {nation} vs Germany in a penalty shootout!!!
             if player_goals > computer_goals:
                 print(f"{name} has won it for {nation}! What a legend!")
             else:
-                print(f"Computer breaks the hearts of {nation}")
+                print(f"Germany breaks the hearts of {nation}")
 
             play_again = get_yes_no_input("Fancy another go? (yes/no): \n")
             if play_again != 'yes':
