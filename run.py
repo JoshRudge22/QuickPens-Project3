@@ -1,7 +1,6 @@
 import random
 import time
 
-
 def print_one_letter_at_a_time(text):
     """Prints text one letter at a time with a slight delay."""
     for char in text:
@@ -28,7 +27,6 @@ ascii_art = """
  ▄████▀        ██████████  ▀█   █▀   ▄████████▀
 """
 
-
 def get_input(prompt, valid_choices):
     """Get user input and ensure it is valid."""
     while True:
@@ -44,7 +42,6 @@ def get_input(prompt, valid_choices):
         except ValueError:
             print("Invalid input. Please enter a number.")
 
-
 def get_yes_no_input(prompt):
     """Get user input and ensure it is 'yes' or 'no'."""
     while True:
@@ -53,7 +50,6 @@ def get_yes_no_input(prompt):
             return choice
         else:
             print("Invalid choice. Please enter 'yes' or 'no'.")
-
 
 def get_heads_or_tails_input(prompt):
     """Get user input and ensure it is 'heads' or 'tails'."""
@@ -64,11 +60,9 @@ def get_heads_or_tails_input(prompt):
         else:
             print("Invalid choice. Please enter 'heads' or 'tails'.")
 
-
 def coin_toss():
     """Simulate a coin toss."""
     return random.choice(["heads", "tails"])
-
 
 def player_shoots(name):
     """Simulate the player taking a penalty shot."""
@@ -89,7 +83,6 @@ def player_shoots(name):
         print(f"{name} with the GGGOOOOOAALLLLL \n")
         return True
 
-
 def player_saves(name):
     """Simulate the player trying to save a penalty shot."""
     player_choice = get_input(
@@ -107,7 +100,6 @@ def player_saves(name):
     else:
         print("Muller with the GGGOOOOOAALLLLL \n")
         return False
-
 
 def game(name, nation, first_shooter):
     player_goals = 0
@@ -168,19 +160,18 @@ def game(name, nation, first_shooter):
 
     return player_goals, computer_goals
 
-
 def main():
     print_one_letter_at_a_time(ascii_art)
     if get_yes_no_input("Can you step up? (yes/no): \n") == 'yes':
         name = input("Please enter your name: \n").strip()
-        while not name:
-            print("Name cannot be empty. Please enter a valid name.")
+        while not name.isalpha():
+            print("Name must be letters only. Please enter a valid name.")
             name = input("Please enter your name: \n").strip()
 
         nation = input(f"Please can {name} "
                        f"enter the country they represent: \n").strip()
-        while not nation:
-            print("Country cannot be empty. "
+        while not nation.isalpha():
+            print("Country must be letters only. "
                   f"Please enter a valid country.")
             nation = input(f"Please can {name} enter "
                            f"the country they represent: \n").strip()
@@ -245,7 +236,6 @@ Let's start with {nation} vs Germany in a penalty shootout!!!
 
     else:
         print("Okay then, enjoy your day.")
-
 
 if __name__ == "__main__":
     main()
